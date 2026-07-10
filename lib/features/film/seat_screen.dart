@@ -60,7 +60,7 @@ class _SeatScreenState extends State<SeatScreen> {
           const BackBubble(),
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(22, 80, 22, 22),
+              padding: const EdgeInsets.fromLTRB(22, 66, 22, 8),
               child: Column(
                 children: [
                   Text(
@@ -78,14 +78,14 @@ class _SeatScreenState extends State<SeatScreen> {
                       fontSize: 12,
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 18),
                   const Text(
                     'LAYAR',
                     style: TextStyle(color: AppColors.muted, letterSpacing: 2),
                   ),
                   Container(
                     height: 2,
-                    margin: const EdgeInsets.symmetric(vertical: 14),
+                    margin: const EdgeInsets.symmetric(vertical: 9),
                     decoration: BoxDecoration(
                       color: AppColors.red,
                       borderRadius: BorderRadius.circular(8),
@@ -205,8 +205,8 @@ class _SeatScreenState extends State<SeatScreen> {
                   ),
                   Container(
                     width: double.infinity,
-                    margin: const EdgeInsets.only(bottom: 12),
-                    padding: const EdgeInsets.all(16),
+                    margin: const EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       color: AppColors.surface,
                       borderRadius: BorderRadius.circular(8),
@@ -262,32 +262,17 @@ class _SeatScreenState extends State<SeatScreen> {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: AppColors.surface,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Column(
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SeatLegend(
-                              color: Color(0xFF33333E),
-                              label: 'Tersedia',
-                            ),
-                            SeatLegend(color: AppColors.red, label: 'Dipilih'),
-                            SeatLegend(color: Colors.white24, label: 'Terisi'),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          'Harga per kursi Rp 55.000',
-                          style: TextStyle(
-                            color: AppColors.muted,
-                            fontSize: 12,
-                          ),
-                        ),
+                        SeatLegend(color: Color(0xFF33333E), label: 'Tersedia'),
+                        SeatLegend(color: AppColors.red, label: 'Dipilih'),
+                        SeatLegend(color: Colors.white24, label: 'Terisi'),
                       ],
                     ),
                   ),
