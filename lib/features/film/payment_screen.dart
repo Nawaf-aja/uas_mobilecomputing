@@ -6,10 +6,18 @@ import '../../core/shared_widgets.dart';
 import 'widgets/small_movie_card.dart';
 
 class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({super.key, required this.movie, required this.cinema});
+  const PaymentScreen({
+    super.key,
+    required this.movie,
+    required this.cinema,
+    required this.seats,
+    required this.total,
+  });
 
   final Movie movie;
   final Cinema cinema;
+  final List<String> seats;
+  final int total;
 
   @override
   State<PaymentScreen> createState() => _PaymentScreenState();
@@ -26,7 +34,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         backgroundColor: AppColors.surface,
         title: const Text('Pembayaran Berhasil'),
         content: Text(
-          'Tiket ${widget.movie.title} berhasil dibayar dengan $selectedPayment.',
+          'Tiket ${widget.movie.title} untuk kursi ${widget.seats.join(', ')} berhasil dibayar dengan $selectedPayment.',
         ),
         actions: [
           TextButton(
@@ -85,18 +93,19 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   SmallMovieCard(
                     movie: widget.movie,
                     cinema: widget.cinema.name,
+                    seatsText: 'Kursi ${widget.seats.join(', ')}',
                   ),
                   const SizedBox(height: 20),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Total Pembayaran',
                         style: TextStyle(color: AppColors.muted),
                       ),
                       Text(
-                        'Rp 110.000',
-                        style: TextStyle(fontWeight: FontWeight.w900),
+                        formatRupiah(widget.total),
+                        style: const TextStyle(fontWeight: FontWeight.w900),
                       ),
                     ],
                   ),
@@ -145,6 +154,19 @@ class _PaymentScreenState extends State<PaymentScreen> {
       ),
     );
   }
+}
+
+String formatRupiah(int value) {
+  final raw = value.toString();
+  final buffer = StringBuffer();
+  for (var i = 0; i < raw.length; i++) {
+    final remaining = raw.length - i;
+    buffer.write(raw[i]);
+    if (remaining > 1 && remaining % 3 == 1) {
+      buffer.write('.');
+    }
+  }
+  return 'Rp $buffer';
 }
 
 class PayChip extends StatelessWidget {

@@ -47,6 +47,7 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
   Widget build(BuildContext context) {
     final data = AppScope.of(context);
     final movie = widget.movie;
+    final isComingSoon = movie.status == 'segera_tayang';
     return Scaffold(
       body: Stack(
         children: [
@@ -99,22 +100,43 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
                         'Read more',
                         style: TextStyle(color: AppColors.red),
                       ),
-                      const SizedBox(height: 22),
-                      const Text(
-                        'Pilih Bioskop',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
+                      if (isComingSoon) ...[
+                        const SizedBox(height: 22),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: AppColors.surface,
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.white10),
+                          ),
+                          child: const Text(
+                            'Film ini segera tayang. Tiket belum tersedia.',
+                            style: TextStyle(
+                              color: AppColors.muted,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 12),
-                      for (final cinema in data.cinemas)
-                        SelectableCinemaCard(
-                          cinema: cinema,
-                          selected: selectedCinema?.id == cinema.id,
-                          typeName: data.typeForCinema(cinema).name,
-                          onTap: () => setState(() => selectedCinema = cinema),
+                      ] else ...[
+                        const SizedBox(height: 22),
+                        const Text(
+                          'Pilih Bioskop',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
+                        const SizedBox(height: 12),
+                        for (final cinema in data.cinemas)
+                          SelectableCinemaCard(
+                            cinema: cinema,
+                            selected: selectedCinema?.id == cinema.id,
+                            typeName: data.typeForCinema(cinema).name,
+                            onTap: () =>
+                                setState(() => selectedCinema = cinema),
+                          ),
+                      ],
                       const SizedBox(height: 90),
                     ],
                   ),
@@ -138,11 +160,28 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(20),
-        child: RedButton(
-          label: 'Beli Tiket',
-          icon: Icons.confirmation_number,
-          onPressed: buyTicket,
-        ),
+        child: isComingSoon
+            ? FilledButton.icon(
+                style: FilledButton.styleFrom(
+                  backgroundColor: AppColors.surface,
+                  foregroundColor: AppColors.muted,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  minimumSize: const Size.fromHeight(54),
+                ),
+                onPressed: null,
+                icon: const Icon(Icons.event_available_outlined, size: 18),
+                label: const Text(
+                  'Segera Tayang',
+                  style: TextStyle(fontWeight: FontWeight.w900),
+                ),
+              )
+            : RedButton(
+                label: 'Beli Tiket',
+                icon: Icons.confirmation_number,
+                onPressed: buyTicket,
+              ),
       ),
     );
   }
