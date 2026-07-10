@@ -1,0 +1,88 @@
+{
+  "movies": [
+    {
+      "id": "m1",
+      "title": "Interstellar Echoes",
+      "genre": "Sci-Fi",
+      "duration": "2h 15m",
+      "year": "2024",
+      "rating": 8.9,
+      "status": "sedang_tayang",
+      "age": "13+",
+      "poster": "https://picsum.photos/seed/interstellar-echoes/520/780",
+      "backdrop": "https://picsum.photos/seed/interstellar-backdrop/1000/900",
+      "synopsis": "Ketika manusia menemukan sinyal misterius dari ujung galaksi, sebuah tim penjelajah muda harus menentukan masa depan Bumi.",
+      "tags": ["Action", "Adventure", "Drama"]
+    },
+    {
+      "id": "m2",
+      "title": "Nebula Protocol",
+      "genre": "Sci-Fi",
+      "duration": "1h 58m",
+      "year": "2024",
+      "rating": 8.5,
+      "status": "sedang_tayang",
+      "age": "13+",
+      "poster": "https://picsum.photos/seed/nebula-protocol/520/780",
+      "backdrop": "https://picsum.photos/seed/nebula-backdrop/1000/900",
+      "synopsis": "Misi rahasia di orbit Mars berubah menjadi perlombaan melawan sistem AI yang mulai belajar terlalu cepat.",
+      "tags": ["Sci-Fi", "Action"]
+    },
+    {
+      "id": "m3",
+      "title": "Neon Shadows",
+      "genre": "Thriller",
+      "duration": "1h 47m",
+      "year": "2024",
+      "rating": 7.8,
+      "status": "sedang_tayang",
+      "age": "17+",
+      "poster": "https://picsum.photos/seed/neon-shadows/520/780",
+      "backdrop": "https://picsum.photos/seed/neon-backdrop/1000/900",
+      "synopsis": "Detektif kota futuristik memburu jaringan kriminal yang bersembunyi di balik layar hologram.",
+      "tags": ["Thriller", "Noir"]
+    },
+    {
+      "id": "m4",
+      "title": "Dune: Part Two",
+      "genre": "Adventure",
+      "duration": "2h 46m",
+      "year": "2024",
+      "rating": 8.9,
+      "status": "presale",
+      "age": "13+",
+      "poster": "https://picsum.photos/seed/dune-part-two/520/780",
+      "backdrop": "https://picsum.photos/seed/dune-backdrop/1000/900",
+      "synopsis": "Perjalanan pahlawan gurun berlanjut saat takdir dan perang mempertemukan keluarga, rakyat, dan kekuasaan.",
+      "tags": ["Action", "Adventure", "Drama"]
+    },
+    {
+      "id": "m5",
+      "title": "Empire's Fall",
+      "genre": "Drama",
+      "duration": "2h 04m",
+      "year": "2024",
+      "rating": 9.1,
+      "status": "presale",
+      "age": "13+",
+      "poster": "https://picsum.photos/seed/empires-fall/520/780",
+      "backdrop": "https://picsum.photos/seed/empire-backdrop/1000/900",
+      "synopsis": "Sebuah kerajaan modern runtuh ketika rahasia keluarga menjadi headline nasional.",
+      "tags": ["Drama", "History"]
+    },
+    {
+      "id": "m6",
+      "title": "Lumina's Quest",
+      "genre": "Animation",
+      "duration": "1h 39m",
+      "year": "2024",
+      "rating": 8.2,
+      "status": "segera_tayang",
+      "age": "SU",
+      "poster": "https://picsum.photos/seed/lumina-quest/520/780",
+      "backdrop": "https://picsum.photos/seed/lumina-backdrop/1000/900",
+      "synopsis": "Seorang anak menemukan kota cahaya tersembunyi dan belajar arti keberanian dari sahabat barunya.",
+      "tags": ["Animation", "Fantasy"]
+    }
+  ]
+}
