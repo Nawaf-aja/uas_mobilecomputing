@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/constants.dart';
+import '../../core/session_prefs.dart';
 import '../auth/login_screen.dart';
 import 'transaction_history_screen.dart';
 
@@ -115,11 +116,15 @@ class ProfileScreen extends StatelessWidget {
             ),
           const SizedBox(height: 16),
           OutlinedButton(
-            onPressed: () => Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (_) => const LoginScreen()),
-              (route) => false,
-            ),
+            onPressed: () async {
+              await SessionPrefs.logout();
+              if (!context.mounted) return;
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => const LoginScreen()),
+                (route) => false,
+              );
+            },
             child: const Text('Keluar', style: TextStyle(color: AppColors.red)),
           ),
         ],

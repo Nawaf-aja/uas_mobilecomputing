@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../core/constants.dart';
+import '../../core/session_prefs.dart';
+import '../auth/login_screen.dart';
+import '../home/main_shell.dart';
 import 'onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,11 +17,21 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future<void>.delayed(const Duration(milliseconds: 900), () {
+    Future<void>.delayed(const Duration(milliseconds: 900), () async {
       if (!mounted) return;
+      final isLoggedIn = await SessionPrefs.isLoggedIn();
+      final hasSeenOnboarding = await SessionPrefs.hasSeenOnboarding();
+      if (!mounted) return;
+
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const OnboardingScreen()),
+        MaterialPageRoute(
+          builder: (_) => isLoggedIn
+              ? const MainShell()
+              : hasSeenOnboarding
+              ? const LoginScreen()
+              : const OnboardingScreen(),
+        ),
       );
     });
   }

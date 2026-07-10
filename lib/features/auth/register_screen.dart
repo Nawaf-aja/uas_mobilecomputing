@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/session_prefs.dart';
 import '../home/main_shell.dart';
 import 'widgets/auth_shell.dart';
 
@@ -19,10 +20,14 @@ class RegisterScreen extends StatelessWidget {
       action: 'Daftar',
       footer: 'Sudah punya akun?',
       footerAction: 'Masuk',
-      onAction: (values) => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const MainShell()),
-      ),
+      onAction: (values) async {
+        await SessionPrefs.saveLogin(values['Email'] ?? '');
+        if (!context.mounted) return;
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const MainShell()),
+        );
+      },
       onFooter: () => Navigator.pop(context),
     );
   }

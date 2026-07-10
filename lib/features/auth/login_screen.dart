@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/app_scope.dart';
+import '../../core/session_prefs.dart';
 import '../home/main_shell.dart';
 import 'register_screen.dart';
 import 'widgets/auth_shell.dart';
@@ -16,7 +17,7 @@ class LoginScreen extends StatelessWidget {
       action: 'Masuk',
       footer: 'Belum punya akun?',
       footerAction: 'Daftar di sini',
-      onAction: (values) {
+      onAction: (values) async {
         final users = AppScope.of(context).users;
         final isValid = users.any(
           (user) =>
@@ -34,6 +35,9 @@ class LoginScreen extends StatelessWidget {
           );
           return;
         }
+
+        await SessionPrefs.saveLogin(values['Email'] ?? '');
+        if (!context.mounted) return;
 
         Navigator.pushReplacement(
           context,

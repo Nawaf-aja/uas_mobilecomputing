@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/constants.dart';
+import '../../core/session_prefs.dart';
 import '../../core/shared_widgets.dart';
 import '../auth/login_screen.dart';
 
@@ -33,8 +34,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     ),
   ];
 
-  void next() {
+  Future<void> next() async {
     if (page == items.length - 1) {
+      await SessionPrefs.finishOnboarding();
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const LoginScreen()),

@@ -20,7 +20,7 @@ class AuthShell extends StatefulWidget {
   final String action;
   final String footer;
   final String footerAction;
-  final void Function(Map<String, String> values) onAction;
+  final Future<void> Function(Map<String, String> values) onAction;
   final VoidCallback onFooter;
 
   @override
@@ -56,8 +56,8 @@ class _AuthShellState extends State<AuthShell> {
     super.dispose();
   }
 
-  void submit() {
-    widget.onAction({
+  Future<void> submit() async {
+    await widget.onAction({
       for (final entry in controllers.entries)
         entry.key: entry.value.text.trim(),
     });
