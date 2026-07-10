@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/constants.dart';
 import '../auth/login_screen.dart';
+import 'transaction_history_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -101,6 +102,16 @@ class ProfileScreen extends StatelessWidget {
               leading: Icon(item.$1, color: AppColors.muted),
               title: Text(item.$2),
               trailing: const Icon(Icons.chevron_right, color: AppColors.muted),
+              onTap: item.$2 == 'Riwayat Transaksi'
+                  ? () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const TransactionHistoryScreen(),
+                      ),
+                    )
+                  : () => ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('${item.$2} belum tersedia')),
+                    ),
             ),
           const SizedBox(height: 16),
           OutlinedButton(

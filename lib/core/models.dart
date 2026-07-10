@@ -5,6 +5,7 @@ class CineData {
     required this.movies,
     required this.cinemas,
     required this.cinemaTypes,
+    required this.transactions,
   });
 
   final List<AuthUser> users;
@@ -12,12 +13,14 @@ class CineData {
   final List<Movie> movies;
   final List<Cinema> cinemas;
   final List<CinemaType> cinemaTypes;
+  final List<TransactionHistory> transactions;
 
   factory CineData.fromJson(
     Map<String, dynamic> json,
     Map<String, dynamic> moviesJson,
     Map<String, dynamic> authJson,
     Map<String, dynamic> cinemaTypesJson,
+    Map<String, dynamic> transactionsJson,
   ) {
     return CineData(
       users: (authJson['users'] as List<dynamic>)
@@ -34,6 +37,9 @@ class CineData {
           .toList(),
       cinemaTypes: (cinemaTypesJson['types'] as List<dynamic>)
           .map((e) => CinemaType.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      transactions: (transactionsJson['transactions'] as List<dynamic>)
+          .map((e) => TransactionHistory.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
   }
@@ -196,4 +202,60 @@ class CinemaType {
       (key, value) => MapEntry(key, (value as List<dynamic>).cast<String>()),
     ),
   );
+}
+
+class TransactionHistory {
+  const TransactionHistory({
+    required this.id,
+    required this.movieTitle,
+    required this.cinemaName,
+    required this.studioFormat,
+    required this.date,
+    required this.time,
+    required this.seats,
+    required this.paymentMethod,
+    required this.total,
+    required this.status,
+    required this.poster,
+  });
+
+  final String id;
+  final String movieTitle;
+  final String cinemaName;
+  final String studioFormat;
+  final String date;
+  final String time;
+  final List<String> seats;
+  final String paymentMethod;
+  final int total;
+  final String status;
+  final String poster;
+
+  String get formattedTotal {
+    final value = total.toString();
+    final buffer = StringBuffer();
+    for (var i = 0; i < value.length; i++) {
+      final remaining = value.length - i;
+      buffer.write(value[i]);
+      if (remaining > 1 && remaining % 3 == 1) {
+        buffer.write('.');
+      }
+    }
+    return 'Rp $buffer';
+  }
+
+  factory TransactionHistory.fromJson(Map<String, dynamic> json) =>
+      TransactionHistory(
+        id: json['id'] as String,
+        movieTitle: json['movieTitle'] as String,
+        cinemaName: json['cinemaName'] as String,
+        studioFormat: json['studioFormat'] as String,
+        date: json['date'] as String,
+        time: json['time'] as String,
+        seats: (json['seats'] as List<dynamic>).cast<String>(),
+        paymentMethod: json['paymentMethod'] as String,
+        total: json['total'] as int,
+        status: json['status'] as String,
+        poster: json['poster'] as String,
+      );
 }

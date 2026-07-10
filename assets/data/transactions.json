@@ -1,0 +1,43 @@
+{
+  "transactions": [
+    {
+      "id": "TRX-240312-001",
+      "movieTitle": "Interstellar Echoes",
+      "cinemaName": "CGV Grand Indonesia",
+      "studioFormat": "Regular 2D",
+      "date": "12 Mar 2024",
+      "time": "13:15",
+      "seats": ["F1", "F2"],
+      "paymentMethod": "GoPay",
+      "total": 110000,
+      "status": "Berhasil",
+      "poster": "https://picsum.photos/seed/interstellar-echoes/520/780"
+    },
+    {
+      "id": "TRX-240309-002",
+      "movieTitle": "Nebula Protocol",
+      "cinemaName": "Agora Mall XXI",
+      "studioFormat": "IMAX",
+      "date": "09 Mar 2024",
+      "time": "21:15",
+      "seats": ["D5"],
+      "paymentMethod": "Kartu Debit",
+      "total": 75000,
+      "status": "Berhasil",
+      "poster": "https://picsum.photos/seed/nebula-protocol/520/780"
+    },
+    {
+      "id": "TRX-240301-003",
+      "movieTitle": "Neon Shadows",
+      "cinemaName": "AEON Mall Tanjung Barat",
+      "studioFormat": "The Premiere",
+      "date": "01 Mar 2024",
+      "time": "19:45",
+      "seats": ["C3", "C4"],
+      "paymentMethod": "OVO",
+      "total": 180000,
+      "status": "Selesai",
+      "poster": "https://picsum.photos/seed/neon-shadows/520/780"
+    }
+  ]
+}

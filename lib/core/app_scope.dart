@@ -17,11 +17,15 @@ class DataGate extends StatelessWidget {
     final cinemaTypesRaw = await rootBundle.loadString(
       'assets/data/cinema_types.json',
     );
+    final transactionsRaw = await rootBundle.loadString(
+      'assets/data/transactions.json',
+    );
     return CineData.fromJson(
       jsonDecode(appRaw) as Map<String, dynamic>,
       jsonDecode(moviesRaw) as Map<String, dynamic>,
       jsonDecode(authRaw) as Map<String, dynamic>,
       jsonDecode(cinemaTypesRaw) as Map<String, dynamic>,
+      jsonDecode(transactionsRaw) as Map<String, dynamic>,
     );
   }
 
