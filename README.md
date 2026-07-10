@@ -1,1 +1,0 @@
-# uas_mobilecomputing
